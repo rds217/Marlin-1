@@ -1587,7 +1587,7 @@
  *     |    [-]    |
  *     O-- FRONT --+
  */
-#define NOZZLE_TO_PROBE_OFFSET { -32, -41.5, -4.8 }
+#define NOZZLE_TO_PROBE_OFFSET { -32, -41.5, -4.0 }
 
 // Enable and set to use a specific tool for probing. Disable to allow any tool.
 #define PROBING_TOOL 0
@@ -2168,7 +2168,7 @@
 
   //#define UBL_HILBERT_CURVE       // Use Hilbert distribution for less travel when probing multiple points
 
-  //#define UBL_TILT_ON_MESH_POINTS         // Use nearest mesh points with G29 J for better Z reference
+  #define UBL_TILT_ON_MESH_POINTS         // Use nearest mesh points with G29 J for better Z reference
   //#define UBL_TILT_ON_MESH_POINTS_3POINT  // Use nearest mesh points with G29 J0 (3-point)
 
   #define UBL_MESH_EDIT_MOVES_Z     // Sophisticated users prefer no movement of nozzle
@@ -2177,21 +2177,21 @@
   //#define UBL_Z_RAISE_WHEN_OFF_MESH 2.5 // When the nozzle is off the mesh, this value is used
                                           // as the Z-Height correction value.
 
-  //#define UBL_MESH_WIZARD         // Run several commands in a row to get a complete mesh
+  #define UBL_MESH_WIZARD         // Run several commands in a row to get a complete mesh
 
   /**
    * Probing not allowed within the position of an obstacle.
    */
-  //#define AVOID_OBSTACLES
+  #define AVOID_OBSTACLES
   #if ENABLED(AVOID_OBSTACLES)
-    #define CLIP_W  23  // Bed clip width, should be padded a few mm over its physical size
-    #define CLIP_H  14  // Bed clip height, should be padded a few mm over its physical size
+    #define CLIP_W  14  // Bed clip width, should be padded a few mm over its physical size
+    #define CLIP_H  19  // Bed clip height, should be padded a few mm over its physical size
 
-    // Obstacle Rectangles defined as { X1, Y1, X2, Y2 }
-    #define OBSTACLE1 { (X_BED_SIZE) / 4     - (CLIP_W) / 2,                       0, (X_BED_SIZE) / 4     + (CLIP_W) / 2, CLIP_H }
-    #define OBSTACLE2 { (X_BED_SIZE) * 3 / 4 - (CLIP_W) / 2,                       0, (X_BED_SIZE) * 3 / 4 + (CLIP_W) / 2, CLIP_H }
-    #define OBSTACLE3 { (X_BED_SIZE) / 4     - (CLIP_W) / 2, (Y_BED_SIZE) - (CLIP_H), (X_BED_SIZE) / 4     + (CLIP_W) / 2, Y_BED_SIZE }
-    #define OBSTACLE4 { (X_BED_SIZE) * 3 / 4 - (CLIP_W) / 2, (Y_BED_SIZE) - (CLIP_H), (X_BED_SIZE) * 3 / 4 + (CLIP_W) / 2, Y_BED_SIZE }
+    // Obstacle Rectangles defined as { X1, Y1, X2, Y2 } - 2x clips along left and right sides ~5mm from top/bottom
+    #define OBSTACLE1 { 0, 3, (CLIP_W), (CLIP_H) + 3}                                 //Lower left 
+    #define OBSTACLE2 { (X_BED_SIZE) - (CLIP_W), 3, (X_BED_SIZE), (CLIP_H) + 3 }      //Lower right
+    #define OBSTACLE3 { 0, (Y_BED_SIZE) - (CLIP_H) - 3, (CLIP_W), (Y_BED_SIZE) - 3 }  //Upper left
+    #define OBSTACLE4 { (X_BED_SIZE) - (CLIP_W), (Y_BED_SIZE) - (CLIP_H) - 3, (X_BED_SIZE), (Y_BED_SIZE) - 3 }
 
     // The probed grid must be inset for G29 J. This is okay, since it is
     // only used to compute a linear transformation for the mesh itself.
@@ -2216,7 +2216,7 @@
  * Add a bed leveling sub-menu for ABL or MBL.
  * Include a guided procedure if manual probing is enabled.
  */
-#define LCD_BED_LEVELING
+//#define LCD_BED_LEVELING
 
 #if ENABLED(LCD_BED_LEVELING)
   #define MESH_EDIT_Z_STEP  0.025 // (mm) Step size while manually probing Z axis.
@@ -2225,7 +2225,7 @@
 #endif
 
 // Add a menu item to move between bed corners for manual bed adjustment
-#define LCD_BED_TRAMMING
+//#define LCD_BED_TRAMMING
 
 #if ENABLED(LCD_BED_TRAMMING)
   #define BED_TRAMMING_INSET_LFRB { 45, 45, 45, 45 } // (mm) Left, Front, Right, Back insets
