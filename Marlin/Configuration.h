@@ -1587,7 +1587,7 @@
  *     |    [-]    |
  *     O-- FRONT --+
  */
-#define NOZZLE_TO_PROBE_OFFSET { -32, -41.5, -4.62 }
+#define NOZZLE_TO_PROBE_OFFSET { -32, -41.5, -4.67 }
 
 // Enable and set to use a specific tool for probing. Disable to allow any tool.
 #define PROBING_TOOL 0
@@ -1789,7 +1789,7 @@
  */
 //#define Z_IDLE_HEIGHT Z_HOME_POS
 
-//#define Z_CLEARANCE_FOR_HOMING  4   // (mm) Minimal Z height before homing (G28) for Z clearance above the bed, clamps, ...
+#define Z_CLEARANCE_FOR_HOMING  4   // (mm) Minimal Z height before homing (G28) for Z clearance above the bed, clamps, ...
                                       // You'll need this much clearance above Z_MAX_POS to avoid grinding.
 
 //#define Z_AFTER_HOMING         10   // (mm) Height to move to after homing (if Z was homed)
@@ -2182,7 +2182,7 @@
   /**
    * Probing not allowed within the position of an obstacle.
    */
-  //#define AVOID_OBSTACLES
+  #define AVOID_OBSTACLES
   #if ENABLED(AVOID_OBSTACLES)
     #define CLIP_W  14  // Bed clip width, should be padded a few mm over its physical size
     #define CLIP_H  19  // Bed clip height, should be padded a few mm over its physical size
