@@ -2182,7 +2182,7 @@
   /**
    * Probing not allowed within the position of an obstacle.
    */
-  #define AVOID_OBSTACLES
+  //#define AVOID_OBSTACLES
   #if ENABLED(AVOID_OBSTACLES)
     #define CLIP_W  14  // Bed clip width, should be padded a few mm over its physical size
     #define CLIP_H  19  // Bed clip height, should be padded a few mm over its physical size
