@@ -1587,7 +1587,7 @@
  *     |    [-]    |
  *     O-- FRONT --+
  */
-#define NOZZLE_TO_PROBE_OFFSET { -32, -41.5, -4.67 }
+#define NOZZLE_TO_PROBE_OFFSET { -32, -41.5, -4.8 }
 
 // Enable and set to use a specific tool for probing. Disable to allow any tool.
 #define PROBING_TOOL 0
@@ -1827,8 +1827,8 @@
 // @section geometry
 
 // The size of the printable area
-#define X_BED_SIZE 235
-#define Y_BED_SIZE 235
+#define X_BED_SIZE 220
+#define Y_BED_SIZE 220
 
 // Travel limits (linear=mm, rotational=°) after homing, corresponding to endstop positions.
 #define X_MIN_POS 0
@@ -2188,10 +2188,10 @@
     #define CLIP_H  19  // Bed clip height, should be padded a few mm over its physical size
 
     // Obstacle Rectangles defined as { X1, Y1, X2, Y2 } - 2x clips along left and right sides ~5mm from top/bottom
-    #define OBSTACLE1 { 0, 3, (CLIP_W), (CLIP_H) + 3}                                 //Lower left 
-    #define OBSTACLE2 { (X_BED_SIZE) - (CLIP_W), 3, (X_BED_SIZE), (CLIP_H) + 3 }      //Lower right
-    #define OBSTACLE3 { 0, (Y_BED_SIZE) - (CLIP_H) - 3, (CLIP_W), (Y_BED_SIZE) - 3 }  //Upper left
-    #define OBSTACLE4 { (X_BED_SIZE) - (CLIP_W), (Y_BED_SIZE) - (CLIP_H) - 3, (X_BED_SIZE), (Y_BED_SIZE) - 3 }
+    #define OBSTACLE1 { 3, 0, (CLIP_H) + 3, (CLIP_W)}                                   //Lower left 
+    #define OBSTACLE2 { (X_BED_SIZE) - (CLIP_H) - 3, 0, (X_BED_SIZE)-3, (CLIP_W)}       //Lower right
+    #define OBSTACLE3 { 0, (Y_BED_SIZE) - (CLIP_H) - 3, (CLIP_W), (Y_BED_SIZE) - 3 }    //Upper left
+    #define OBSTACLE4 { (X_BED_SIZE) - (CLIP_H) - 3, (Y_BED_SIZE) - (CLIP_W), (X_BED_SIZE) - 3, (Y_BED_SIZE)}
 
     // The probed grid must be inset for G29 J. This is okay, since it is
     // only used to compute a linear transformation for the mesh itself.
